@@ -104,3 +104,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
+export const StyledForm = styled.form`
+   display: flex;
+   align-items: center;
+ `;

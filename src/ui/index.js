@@ -55,11 +55,31 @@ import { NavLink } from "react-router-dom";
    padding-bottom: 20.4px;
    padding-left: 21.4px;
 
-   & > input {
+   input {
+     color: #fafbfb;
      background: none;
      border: 0;
+     margin-left: 10px;
+     padding-top: 3px;
+     caret-color: #fafbfb;
+     font-size: 18px;
    }
- `;
+
+   input::-webkit-search-decoration,
+   input::-webkit-search-cancel-button,
+   input::-webkit-search-results-button,
+   input::-webkit-search-results-decoration {
+     -webkit-appearance: none;
+   }
+
+   input:focus {
+     outline: none;
+   }
+
+   input::placeholder {
+     color: #fafbfb;
+     font-size: 18px;}
+ `
 
 export const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');

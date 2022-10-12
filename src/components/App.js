@@ -14,7 +14,7 @@ function App() {
         <StyledNavList>
         <li><StyledLink to="/portfolio">portfolio</StyledLink></li>
         <li><StyledLink to="/">home</StyledLink></li>
-        <QueryContainer />
+        <QueryContainer />ç
         </StyledNavList>
         </StyledNavbar>
       <Routes>

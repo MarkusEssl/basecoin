@@ -24,10 +24,10 @@ import { NavLink } from "react-router-dom";
    height: 100%;
    background: #191b1f;
    padding-left: 95px;
-   li:nth-child(1) {
+   & > li:nth-child(1) {
      margin-right: 31px;
    }
-   li:nth-child(2) {
+   & > li:nth-child(2) {
      margin-right: auto;
    }
  `;
@@ -44,16 +44,15 @@ import { NavLink } from "react-router-dom";
  `;
 
  export const StyledQueryContainer = styled.div`
-   display: flex;
    width: 510px;
    height: 63px;
    background: #2c2f36;
    border-radius: 10px;
    margin-right: 27px;
-   align-items: center;
    padding-top: 19.5px;
    padding-bottom: 20.4px;
    padding-left: 21.4px;
+   position: relative;
 
    input {
      color: #fafbfb;
@@ -107,4 +106,46 @@ export const GlobalStyle = createGlobalStyle`
 export const StyledForm = styled.form`
    display: flex;
    align-items: center;
+ `;
+
+ export const StyledQueryList = styled.ul`
+   position: absolute;
+   content: "";
+   top: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+   background: #2c2f36;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 12px;
+   border-radius: 0 0 8px 8px;
+   width: 300px;
+   font-size: 18px;
+   padding-bottom: 6px;
+   li {
+     cursor: pointer;
+     padding: 10px 0;
+   }
+
+   li:hover {
+     background: #191b1f;
+     width: 90%;
+     border-radius: 8px;
+   }
+ `;
+
+ export const StyledLoadingList = styled.div`
+   position: absolute;
+   content: "";
+   top: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+   background: #2c2f36;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   border-radius: 0 0 8px 8px;
+   width: 300px;
+   font-size: 18px;
  `;

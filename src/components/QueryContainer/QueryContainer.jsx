@@ -1,13 +1,20 @@
-import React from "react";
-import { StyledQueryContainer,StyledForm } from "../../ui";
+import React, {useState} from "react";
+import { StyledQueryContainer,StyledLoadingList, StyledForm } from "../../ui";
 import axios from "axios";
+import {QueryList} from '../QueryList/QueryList'
+
 
 const QueryContainer = (props) => {
 
-
+    const [settings, setSettings] = useState({isLoading:false, value:'', list:[]})
     const handleChange = ({ target: { value } }) => {
-        getUser(value);
-      };
+        let timer 
+        clearTimeout(timer)
+        if (!value){
+            timer = setTimeout(() => setSettings(prevSettings => ({...prevSettings,list: []})), 1200)
+          };
+          value && getUser(value)
+        }
    
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,14 +22,21 @@ const QueryContainer = (props) => {
    
     const getUser = async (searchTerm) => {
         try {
-          const response = await axios(
-            `https://crypto-app-server.herokuapp.com/coins/${searchTerm}`
-          );
-          console.log(response);
-        } catch (error) {
-          console.error(error);
-        }}
 
+        setSettings(prevSettings => ({...prevSettings,isLoading: true}))
+
+        const {data} = await axios(
+            `https://crypto-app-server.herokuapp.com/coins/${searchTerm}`)
+
+        setSettings(prevSettings => ({...prevSettings,
+            isLoading: false,
+            list: data.map(({ name, id }) => {
+                return { name, id }})}))
+
+        } catch (error) {
+            console.log(error)
+        }}
+    console.log(settings)
    return (
     <StyledQueryContainer>
     <StyledForm onSubmit={handleSubmit}>
@@ -32,6 +46,11 @@ const QueryContainer = (props) => {
         placeholder="Search..."
       />
     </StyledForm>
+    {settings.isLoading ? (
+           <StyledLoadingList>Loading list...</StyledLoadingList>
+         ) : (
+           <QueryList list={settings.list} />
+         )}
   </StyledQueryContainer>
    );
  };

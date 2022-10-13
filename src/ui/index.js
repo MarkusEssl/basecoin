@@ -2,6 +2,7 @@ import styled, {createGlobalStyle} from "styled-components";
 import { NavLink } from "react-router-dom";
 import Polygon from "../icons/polygon.svg";
 import Theme from "../icons/lightTheme.svg";
+import {CoinData} from '../components/CoinData/CoinData'
 
  export const StyledContainer = styled.div`
    max-width: 1920px;
@@ -85,19 +86,21 @@ import Theme from "../icons/lightTheme.svg";
 export const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     body{
-    font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif;
+        background:#191B1F;
+        color:#fff;
+        height:100vh;
     }
 
     ul{
-    list-style-type:none;
+        list-style-type:none;
     }
-
     a{
     cursor:pointer;
     text-decoration:none;
@@ -209,4 +212,60 @@ export const StyledForm = styled.form`
    background-repeat: no-repeat;
    background-position: center;
    margin-right: 3px;
+ `;
+
+ export const StyledMarketData = styled(CoinData)`
+   font-size: 17px;
+   top: 100%;
+   position: absolute;
+   left: 0;
+   right: 0;
+   margin-left: auto;
+   margin-right: auto;
+   width: 926px;
+   height: 55px;
+   border-radius: 0 0 10px 10px;
+   background: #191b1f;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-left: 53px;
+   padding-right: 43px;
+
+   & > div {
+     display: flex;
+     align-items: center;
+   }
+ `;
+
+ export const StyledCircle = styled.div`
+   height: ${({ height }) => (height ? height : "8px")};
+   width: ${({ width }) => (width ? width : "8px")};
+   background-color: ${({ background }) => (background ? background : "#fff")};
+   margin-right: ${({ marginRight }) => (marginRight ? marginRight : "13px")};
+   border-radius: 50%;
+   display: inline-block;
+ `;
+
+ export const StyledProgressContainer = styled.div`
+   position: relative;
+   width: ${({ width }) => width}px;
+   background-color: #2172e5;
+   height: 13px;
+   border-radius: 10px;
+   border: none;
+   margin-left: ${({ marginLeft }) => (marginLeft ? marginLeft : "0")}px;
+ `;
+
+ export const StyledProgress = styled.div`
+   height: 100%;
+   z-index: 1;
+   position: absolute;
+   left: 0;
+   top: 0;
+   border-radius: 10px;
+   border: none;
+   background: #fff;
+   width: ${({ percent }) => percent}%;
+   min-width: ${({ percent }) => (percent < 2 ? "2" : percent)}%;
  `;

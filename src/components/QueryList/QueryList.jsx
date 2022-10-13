@@ -12,7 +12,7 @@ function QueryList(props){
             </StyledQueryList>
         )
     } else {
-        return ("null")
+        return null
     }
 }
 

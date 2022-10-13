@@ -7,8 +7,15 @@ import { NavLink } from "react-router-dom";
 
 function App() {
 
-  const [currency, setCurrency] = useState({currency: "USD",currencySymbol: "$"})
+  const savedCurency = JSON.parse(localStorage.getItem("currencyinfo"))
+  console.log(savedCurency)
+  const [currency, setCurrency] = useState(savedCurency ? savedCurency : {currency: "USD",currencySymbol: "$"})
+  console.log(currency)
+
+  // Json.parse created object based on string
+  // localStorage.setItem("currencyinfo", "foo")
   
+
   return (
     <StyledContainer>
       <GlobalStyle />
@@ -18,8 +25,7 @@ function App() {
         <li><StyledLink to="/">home</StyledLink></li>
         <QueryContainer />
         <CurrencySelector                 
-            currency={currency.currency}
-            currencySymbol={currency.currencySymbol}
+            currency={currency}
             handleCurrencyChange={handleCurrencyChange}
             setState={setCurrency}
         />

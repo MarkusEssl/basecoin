@@ -2,34 +2,20 @@ import React from "react";
 import { StyledCurrencySelector } from "../../ui";
 
 const handleCurrencyChange = (value, setState) => {
-    console.log(value)
-    console.log(setState.setState)
-    switch (value.target.value) {
-      case "USD":
-        setState.setState({ currency: value.target.value, currencySymbol: "$" });
-        break;
-      case "GBP":
-        setState.setState({ currency: value.target.value, currencySymbol: "£" });
-        break;
-      case "EUR":
-        setState.setState({ currency: value.target.value, currencySymbol: "€" });
-        break;
-      case "BTC":
-        setState.setState({ currency: value.target.value, currencySymbol: "₿" });
-        break;
-      case "ETH":
-        setState.setState({ currency: value.target.value, currencySymbol: "Ξ" });
-        break;
-    }
+
+    const currencies = {"USD": "$", "GBP":"£", "EUR":"€", "BTC": "₿", "ETH":"Ξ"}
+    const newstate = {currency: value.target.value, currencySymbol: currencies[value.target.value]}
+    console.log(newstate)
+    setState(newstate)
+    localStorage.setItem("currencyinfo", JSON.stringify(newstate))
   };
  const CurrencySelector = (props) => {
-   const { className, handleCurrencyChange, currencySymbol, setState } = props;
-   console.log(setState)
+   const { currency, handleCurrencyChange, setState } = props;
    return (
-     <StyledCurrencySelector className={className}>
-       <div>{currencySymbol}</div>
+     <StyledCurrencySelector className={currency.currency}>
+       <div>{currency.currencySymbol}</div>
        <div>
-         <select onChange={event => handleCurrencyChange(event, {setState})}>
+         <select value={currency.currency} onChange={event => handleCurrencyChange(event, setState)}>
             <option value="USD">USD</option>
             <option value="GBP">GBP</option>
             <option value="EUR">EUR</option>

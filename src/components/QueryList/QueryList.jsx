@@ -6,13 +6,13 @@ function QueryList(props){
     if (props.list.length > 0){
         return(
             <StyledQueryList>
-                {props.list.map(({element,i}) => (
-                    <li style={{'color':'white'}}key={i}>{element}</li>
+                {props.list.map(({name, id}) => (
+                    <li key={id}>{name}</li>
                 ))}
             </StyledQueryList>
         )
     } else {
-        return (null)
+        return ("null")
     }
 }
 
